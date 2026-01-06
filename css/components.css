@@ -1,0 +1,392 @@
+.timeline {
+  padding: 0 16px;
+}
+
+.day-group {
+  margin-top: 24px;
+}
+
+.day-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.expense-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+.expense-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.expense-amount {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.expense-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.category-pills {
+  display: flex;
+  gap: 10px;
+  padding: 8px 16px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.category-pill {
+  flex-shrink: 0;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.1s ease;
+}
+
+.category-pill:active {
+  transform: scale(0.96);
+}
+
+.category-pill.active {
+  background: rgba(110, 231, 183, 0.15);
+}
+
+.category-amount {
+  font-weight: 600;
+}
+
+.category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.category-pills {
+  display: flex;
+  gap: 10px;
+  padding: 8px 16px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.category-pill {
+  flex-shrink: 0;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.1s ease;
+}
+
+.category-pill:active {
+  transform: scale(0.96);
+}
+
+.category-pill.active {
+  background: rgba(110, 231, 183, 0.15);
+}
+
+.category-amount {
+  font-weight: 600;
+}
+
+.category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+
+/* Floating + button */
+#add-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  font-size: 32px;
+  background: var(--accent);
+  color: #000;
+  cursor: pointer;
+}
+
+/* Backdrop */
+#sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Bottom sheet */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border-radius: 20px 20px 0 0;
+  padding: 16px;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+}
+
+.sheet.show {
+  transform: translateY(0);
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: #555;
+  border-radius: 4px;
+  margin: 0 auto 12px;
+}
+
+#amount-input {
+  width: 100%;
+  font-size: 32px;
+  background: none;
+  border: none;
+  color: var(--text);
+  outline: none;
+  margin-bottom: 12px;
+}
+
+#note-input {
+  width: 100%;
+  background: var(--card);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--text);
+  margin-top: 12px;
+}
+
+#add-expense-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  background: var(--accent);
+  color: #000;
+  opacity: 0.5;
+}
+
+#add-expense-btn:enabled {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+.sheet-categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.sheet-category {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.sheet-category.active {
+  opacity: 1;
+  background: rgba(110, 231, 183, 0.2);
+}
+
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+.expense-card {
+  transition: transform 0.1s ease;
+}
+
+.expense-card:active {
+  transform: scale(0.98);
+}
+
+/* ===== Timeline & Date UI ===== */
+
+.timeline {
+  padding: 0 16px;
+}
+
+.day-group {
+  margin-top: 28px;
+}
+
+.day-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.expense-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  transition: transform 0.1s ease;
+}
+
+.expense-card:active {
+  transform: scale(0.98);
+}
+
+.expense-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.expense-amount {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.expense-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.expense-note {
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expense-time {
+  white-space: nowrap;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--muted);
+  font-size: 14px;
+}
+/* ===== Bottom Sheet Category Selector ===== */
+
+.sheet-categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 4px 12px;
+}
+
+.sheet-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.sheet-category {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.sheet-category.active {
+  opacity: 1;
+  background: rgba(110, 231, 183, 0.18);
+}
+
+.sheet-category:active {
+  transform: scale(0.96);
+}

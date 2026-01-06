@@ -1,0 +1,14 @@
+:root {
+  --bg: #121212;
+  --card: #1a1a1a;
+  --text: #eaeaea;
+  --muted: #9a9a9a;
+  --accent: #6ee7b7;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}

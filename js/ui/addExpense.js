@@ -27,25 +27,21 @@ function handleKeyboard() {
     }
   };
 
-  // Apply immediately
   applyPadding();
-
-  // Re-apply on viewport resize (keyboard open/close)
   viewport.addEventListener("resize", applyPadding);
 }
 
  
 
- function open() {
+function open() {
   document.body.style.overflow = "hidden";
   sheet.classList.add("show");
   sheet.classList.remove("hidden");
   backdrop.classList.remove("hidden");
 
   renderCategories();
-  handleKeyboard(); // keep this
+  handleKeyboard(); // sets up listener, does NOT force keyboard
 }
-
 
 
   function reset() {

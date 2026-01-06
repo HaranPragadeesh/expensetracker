@@ -12,20 +12,26 @@ export function initAddExpense({ onAdd }) {
 
   let selectedCategory = CATEGORIES[0];
 
+ function scrollSheetToTop() {
+  sheet.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+ }
+
  function open() {
   document.body.style.overflow = "hidden";
   sheet.classList.add("show");
   sheet.classList.remove("hidden");
   backdrop.classList.remove("hidden");
-  renderCategories();
-  amountInput.focus();
-}
 
-function close() {
-  document.body.style.overflow = "";
-  sheet.classList.remove("show");
-  backdrop.classList.add("hidden");
-  setTimeout(() => sheet.classList.add("hidden"), 200);
+  renderCategories();
+
+  // Delay to allow keyboard + layout to settle
+  setTimeout(() => {
+    amountInput.focus();
+    scrollSheetToTop();
+  }, 150);
 }
 
   function reset() {
@@ -80,6 +86,11 @@ function close() {
  submitBtn.onclick = () => {
   // Haptic feedback (Android / supported devices)
   if (navigator.vibrate) navigator.vibrate(10);
+
+  
+  amountInput.addEventListener("focus", () => {
+  setTimeout(scrollSheetToTop, 100);
+  });
 
   // Close keyboard
   amountInput.blur();

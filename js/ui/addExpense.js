@@ -17,16 +17,21 @@ function handleKeyboard() {
 
   const viewport = window.visualViewport;
 
-  viewport.addEventListener("resize", () => {
-    const keyboardHeight =
-      window.innerHeight - viewport.height;
+  const applyPadding = () => {
+    const keyboardHeight = window.innerHeight - viewport.height;
 
     if (keyboardHeight > 0) {
       sheet.style.paddingBottom = `${keyboardHeight}px`;
     } else {
       sheet.style.paddingBottom = "";
     }
-  });
+  };
+
+  // Apply immediately
+  applyPadding();
+
+  // Re-apply on viewport resize (keyboard open/close)
+  viewport.addEventListener("resize", applyPadding);
 }
 
  
@@ -40,9 +45,15 @@ function handleKeyboard() {
   renderCategories();
   handleKeyboard();
 
-  setTimeout(() => {
+  // Focus amount input to force keyboard
+  requestAnimationFrame(() => {
     amountInput.focus();
-  }, 100);
+
+    // Ensure keyboard has actually opened
+    setTimeout(() => {
+      handleKeyboard();
+    }, 300);
+  });
 }
 
 

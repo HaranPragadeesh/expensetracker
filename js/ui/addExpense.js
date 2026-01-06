@@ -12,19 +12,21 @@ export function initAddExpense({ onAdd }) {
 
   let selectedCategory = CATEGORIES[0];
 
-  function open() {
-    sheet.classList.add("show");
-    sheet.classList.remove("hidden");
-    backdrop.classList.remove("hidden");
-    renderCategories();
-    amountInput.focus();
-  }
+ function open() {
+  document.body.style.overflow = "hidden";
+  sheet.classList.add("show");
+  sheet.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+  renderCategories();
+  amountInput.focus();
+}
 
-  function close() {
-    sheet.classList.remove("show");
-    backdrop.classList.add("hidden");
-    setTimeout(() => sheet.classList.add("hidden"), 200);
-  }
+function close() {
+  document.body.style.overflow = "";
+  sheet.classList.remove("show");
+  backdrop.classList.add("hidden");
+  setTimeout(() => sheet.classList.add("hidden"), 200);
+}
 
   function reset() {
     amountInput.value = "";
@@ -75,15 +77,24 @@ export function initAddExpense({ onAdd }) {
     submitBtn.disabled = !amountInput.value;
   };
 
-  submitBtn.onclick = () => {
-    onAdd({
-      amount: Number(amountInput.value),
-      tag: selectedCategory.name,
-      note: noteInput.value,
-      date: new Date(),
-      color: selectedCategory.color
-    });
-    close();
-    reset();
-  };
+ submitBtn.onclick = () => {
+  // Haptic feedback (Android / supported devices)
+  if (navigator.vibrate) navigator.vibrate(10);
+
+  // Close keyboard
+  amountInput.blur();
+  noteInput.blur();
+
+  onAdd({
+    amount: Number(amountInput.value),
+    tag: selectedCategory.name,
+    note: noteInput.value,
+    date: new Date(),
+    color: selectedCategory.color
+  });
+
+  close();
+  reset();
+};
+
 }

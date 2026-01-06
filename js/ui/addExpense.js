@@ -12,18 +12,24 @@ export function initAddExpense({ onAdd }) {
 
   let selectedCategory = CATEGORIES[0];
 
- function scrollSheetToTop() {
-  sheet.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
- }
- function bringAboveKeyboard(element) {
-  element.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
+function handleKeyboard() {
+  if (!window.visualViewport) return;
+
+  const viewport = window.visualViewport;
+
+  viewport.addEventListener("resize", () => {
+    const keyboardHeight =
+      window.innerHeight - viewport.height;
+
+    if (keyboardHeight > 0) {
+      sheet.style.paddingBottom = `${keyboardHeight}px`;
+    } else {
+      sheet.style.paddingBottom = "";
+    }
   });
 }
+
+ 
 
  function open() {
   document.body.style.overflow = "hidden";
@@ -32,13 +38,13 @@ export function initAddExpense({ onAdd }) {
   backdrop.classList.remove("hidden");
 
   renderCategories();
+  handleKeyboard();
 
-  // Wait for keyboard + layout
   setTimeout(() => {
     amountInput.focus();
-    bringAboveKeyboard(submitBtn);
-  }, 300);
+  }, 100);
 }
+
 
   function reset() {
     amountInput.value = "";
@@ -94,13 +100,6 @@ export function initAddExpense({ onAdd }) {
   if (navigator.vibrate) navigator.vibrate(10);
 
   
-  amountInput.addEventListener("focus", () => {
-  setTimeout(() => bringAboveKeyboard(submitBtn), 200);
-});
-
-noteInput.addEventListener("focus", () => {
-  setTimeout(() => bringAboveKeyboard(submitBtn), 200);
-});
 
   // Close keyboard
   amountInput.blur();

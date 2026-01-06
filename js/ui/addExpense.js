@@ -18,6 +18,12 @@ export function initAddExpense({ onAdd }) {
     behavior: "smooth"
   });
  }
+ function bringAboveKeyboard(element) {
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
 
  function open() {
   document.body.style.overflow = "hidden";
@@ -27,11 +33,11 @@ export function initAddExpense({ onAdd }) {
 
   renderCategories();
 
-  // Delay to allow keyboard + layout to settle
+  // Wait for keyboard + layout
   setTimeout(() => {
     amountInput.focus();
-    scrollSheetToTop();
-  }, 150);
+    bringAboveKeyboard(submitBtn);
+  }, 300);
 }
 
   function reset() {
@@ -89,8 +95,12 @@ export function initAddExpense({ onAdd }) {
 
   
   amountInput.addEventListener("focus", () => {
-  setTimeout(scrollSheetToTop, 100);
-  });
+  setTimeout(() => bringAboveKeyboard(submitBtn), 200);
+});
+
+noteInput.addEventListener("focus", () => {
+  setTimeout(() => bringAboveKeyboard(submitBtn), 200);
+});
 
   // Close keyboard
   amountInput.blur();

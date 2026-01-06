@@ -43,18 +43,9 @@ function handleKeyboard() {
   backdrop.classList.remove("hidden");
 
   renderCategories();
-  handleKeyboard();
-
-  // Focus amount input to force keyboard
-  requestAnimationFrame(() => {
-    amountInput.focus();
-
-    // Ensure keyboard has actually opened
-    setTimeout(() => {
-      handleKeyboard();
-    }, 300);
-  });
+  handleKeyboard(); // keep this
 }
+
 
 
   function reset() {

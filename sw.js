@@ -1,5 +1,6 @@
 
-const CACHE_NAME = "expenses-v1";
+const CACHE_NAME = "expense-cache-${CACHE_VERSION}";
+const CACHE_VERSION = "v3";
 
 const FILES_TO_CACHE = [
   "/",

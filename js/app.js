@@ -61,7 +61,9 @@ listenToExpenses(firestoreExpenses => {
   render();
 });
 
-import { initAddExpense } from "./ui/addExpense.js";
+/* ======================
+   ADD EXPENSE
+====================== */
 
 initAddExpense({
   onAdd: async expense => {

@@ -110,8 +110,7 @@ function open() {
       color: selectedCategory.color
     });
 
-    close();
-    reset();
+    
   } catch (e) {
     console.error(e);
     alert("Could not save. Try again.");
@@ -120,9 +119,6 @@ function open() {
   }
 
 
-
-  close();
-  reset();
 
 };
 

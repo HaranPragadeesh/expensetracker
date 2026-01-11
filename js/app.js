@@ -61,3 +61,11 @@ listenToExpenses(firestoreExpenses => {
   render();
 });
 
+import { initAddExpense } from "./ui/addExpense.js";
+
+initAddExpense({
+  onAdd: async expense => {
+    await addExpense(expense);
+    showToast(`Added ₹${expense.amount}`);
+  }
+});

@@ -94,15 +94,15 @@ function open() {
   };
 
  submitBtn.onclick = async () => {
-  // Prevent double tap
   if (submitBtn.disabled) return;
+
   submitBtn.disabled = true;
   submitBtn.textContent = "Saving...";
 
   try {
     if (navigator.vibrate) navigator.vibrate(10);
 
-    await addExpense({
+    await onAdd({
       amount: Number(amountInput.value),
       tag: selectedCategory.name,
       note: noteInput.value,
@@ -110,19 +110,20 @@ function open() {
       color: selectedCategory.color
     });
 
-    // Give Firestore time to persist locally
-    await new Promise(r => setTimeout(r, 150));
-
-    history.back();
+    close();
+    reset();
   } catch (e) {
     console.error(e);
-    alert("Could not save. Please try again.");
+    alert("Could not save. Try again.");
     submitBtn.disabled = false;
     submitBtn.textContent = "Add Expense";
   }
 
+
+
   close();
   reset();
+
 };
 
 }

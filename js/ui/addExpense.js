@@ -93,23 +93,33 @@ function open() {
     submitBtn.disabled = !amountInput.value;
   };
 
- submitBtn.onclick = () => {
-  // Haptic feedback (Android / supported devices)
-  if (navigator.vibrate) navigator.vibrate(10);
+ submitBtn.onclick = async () => {
+  // Prevent double tap
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Saving...";
 
-  
+  try {
+    if (navigator.vibrate) navigator.vibrate(10);
 
-  // Close keyboard
-  amountInput.blur();
-  noteInput.blur();
+    await addExpense({
+      amount: Number(amountInput.value),
+      tag: selectedCategory.name,
+      note: noteInput.value,
+      date: new Date(),
+      color: selectedCategory.color
+    });
 
-  onAdd({
-    amount: Number(amountInput.value),
-    tag: selectedCategory.name,
-    note: noteInput.value,
-    date: new Date(),
-    color: selectedCategory.color
-  });
+    // Give Firestore time to persist locally
+    await new Promise(r => setTimeout(r, 150));
+
+    history.back();
+  } catch (e) {
+    console.error(e);
+    alert("Could not save. Please try again.");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Add Expense";
+  }
 
   close();
   reset();

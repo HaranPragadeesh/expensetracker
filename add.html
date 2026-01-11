@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Expense</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body class="add-page">
+  <header class="add-header">
+    <button id="close-btn">✕</button>
+    <h2>Add Expense</h2>
+  </header>
+
+  <main class="add-content">
+    <input id="amount-input" type="number" placeholder="₹ 0" inputmode="numeric" autofocus>
+    <div id="sheet-categories"></div>
+    <input id="note-input" placeholder="Note (optional)">
+    <button id="add-expense-btn" disabled>Add Expense</button>
+  </main>
+
+  <script type="module" src="js/add.js"></script>
+</body>
+</html>

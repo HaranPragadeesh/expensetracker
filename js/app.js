@@ -61,13 +61,3 @@ listenToExpenses(firestoreExpenses => {
   render();
 });
 
-/* ======================
-   ADD EXPENSE
-====================== */
-
-initAddExpense({
-  onAdd: async expense => {
-    await addExpense(expense);
-    showToast(`Added ₹${expense.amount}`);
-  }
-});
